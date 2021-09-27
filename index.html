@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    </head>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./styles.css">
+    <body>
+        <div id=chat></div>
+        <div style="position: absolute; bottom: 0px; width:100%">
+        <form, style="position: absolute; bottom: 0px; width:100%">
+            <input name="usermsg" type="text" id="usermsg", style="width:80%; font-size:20px;"/>
+            <input name="button" id="button", type="button" onclick="msg()" style="width:10%; font-size:20px;"/>
+        </form>
+        </div>
+    </body>
+    <script>
+
+        var input = document.getElementById("usermsg");
+        input.addEventListener("keyup", function(event) {
+          // Number 13 is the "Enter" key on the keyboard
+          if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("button").click();
+          }
+        });
+
+        var start_text = "Hei! jeg er en chatbot, du kan spørre meg spørsmål om PIA."
+        document.getElementById("chat").innerHTML += "<div class='green_box'> <span>"  + start_text + "</br></span></div>";
+
+        function msg(){
+            message = document.getElementById("usermsg").value
+            document.getElementById("chat").innerHTML += "<div class='blue_box'> <span>" + message + "</br></span></div>";
+
+
+            (async () => {
+              const rawResponse = await fetch('http://127.0.0.1:5000/', {
+                method: 'POST',
+                headers: {
+                  "Access-Control-Allow-Origin" : "*", 
+                  "Access-Control-Allow-Credentials" : true,
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({a: message})
+              });
+
+              const content = await rawResponse.json()
+              console.log(content)
+              document.getElementById("chat").innerHTML += "<div class='green_box'> <span>" + content["a"] + "</br></span></div>";
+            })();
+        }
+    </script>
+
+</html>

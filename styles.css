@@ -1,0 +1,24 @@
+.blue_box, .green_box {
+    display: block;
+    clear:both;
+}
+.blue_box span {
+    background-color: rgb(30, 67, 199);
+    color: white;
+    padding: 10px 5px;
+    font-size:20px;
+    border-radius: 25px;
+    font-family: 'Roboto', sans-serif;
+    display: block;
+    float: right;
+}
+.green_box span {
+    background-color: rgb(254, 152, 81);
+    color: white;
+    padding: 10px 5px;
+    border-radius: 25px;
+    font-family: 'Roboto', sans-serif;
+    font-size:20px;
+    display: block;
+    float: left;
+}

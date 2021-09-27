@@ -1,0 +1,4 @@
+beautifulsoup4==4.9.3
+Flask==2.0.1
+Flask-Cors==3.0.10
+openai==0.8.0
